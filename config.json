@@ -1,0 +1,9 @@
+{
+  "debug": true,
+  "server": {
+    "webinterface-port": 8080,
+    "master-address": "127.0.0.1",
+    "master-port": 3030
+  },
+  "force-2fa": true
+}
