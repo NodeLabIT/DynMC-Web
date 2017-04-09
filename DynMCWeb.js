@@ -1,6 +1,7 @@
 'use strict';
 
 const WebServer = require('./lib/WebServer.class');
+const NetMasterClient = require('./lib/net/NetMasterClient.class');
 require('./lib/Log.class');
 
 class DynMCWeb {
@@ -8,7 +9,6 @@ class DynMCWeb {
     start() {
         Log.info("Launching DynMC");
         Log.debug(new Date().getTime());
-        WebServer.start();
     }
 
     constructor() {

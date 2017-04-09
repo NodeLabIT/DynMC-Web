@@ -1,9 +1,13 @@
 {
   "debug": true,
-  "server": {
-    "webinterface-port": 8080,
-    "master-address": "127.0.0.1",
-    "master-port": 3030
+  "web": {
+    "localhostOnly": true,
+    "port": 8080
+  },
+  "master": {
+    "host": "127.0.0.1",
+    "port": 1338,
+    "key": ""
   },
   "force-2fa": true
 }
