@@ -1,5 +1,5 @@
 {
-  "name": "dyncm-web",
+  "name": "dynmc-web",
   "version": "1.0.0",
   "description": "Websoftware for NodeLab DynMC",
   "main": "Web.js",
