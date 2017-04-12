@@ -2,13 +2,13 @@
   "name": "dynmc-web",
   "version": "1.0.0",
   "description": "Websoftware for NodeLab DynMC",
-  "main": "Web.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NodeLabIT/DynMC-Web.git"
   },
   "author": "NodeLab IT",
-  "license": "ISC",
+  "license": "AGPL",
   "bugs": {
     "url": "https://github.com/NodeLabIT/DynMC-Web/issues"
   },
