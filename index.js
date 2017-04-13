@@ -6,6 +6,9 @@ require('./lib/Log.class');
 
 class DynMCWeb {
 
+    /**
+     * Starts the web-app
+     * */
     start() {
         Log.info("Launching DynMC");
         Log.debug(new Date().getTime());
