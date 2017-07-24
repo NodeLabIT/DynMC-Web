@@ -1,3 +1,13 @@
 {
-  "test": "Du musst dich noch anmelden du Hurensohn"
+  "control-panel": "DynMC Control Panel",
+  "navigation": "Navigation",
+  "dashboard": "Dashboard",
+  "server-nodes": "Server-Nodes",
+  "server-plugins": "Server-Plugins",
+  "server-worlds": "Server-Welten",
+  "server-types": "Server-Typen",
+  "settings": "Einstellungen",
+  "logout": "Abmelden",
+  "login": "Anmelden",
+  "logged-in-as": "Angemeldet als"
 }

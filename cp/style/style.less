@@ -56,6 +56,19 @@ header {
     }
   }
 }
+.navigation {
+  .grid {
+    a {
+      text-decoration: none;
+      color: @color-dark;
+      border-radius: 2px;
+      &.router-link-active, &:hover, &:active {
+        border-color: @color-blue-primary;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.23);
+      }
+    }
+  }
+}
 
 .dialog-container {
   &:not(.closed) {
@@ -91,17 +104,15 @@ header {
     position: fixed;
 
     &:not(.small) {
-      top: 50%;
+      top: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
 
       width: 97%;
       height: 92%;
     }
     &.small {
-      top: 110px;
+      top: 0;
       left: 50%;
-      transform: translate(10%, -50%);
 
       width: 500px;
       max-width: 95%;
@@ -124,7 +135,7 @@ header {
       }
     }
     .dialog-body {
-      padding: 40px;
+      padding: 20px;
     }
     .dialog-footer {
       padding: 20px 40px;
@@ -133,10 +144,51 @@ header {
 }
 
 @keyframes dialogFadeIn {
-  0% { transform: translate(-50%, -50%) scale(0); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+  0% { transform: translate(-50%, 80px) scale(0); }
+  100% { transform: translate(-50%, 80px) scale(1); }
 }
 @keyframes dialogFadeOut {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  100% { transform: translate(-50%, -50%) scale(0); }
+  0% { transform: translate(-50%, 80px) scale(1); }
+  100% { transform: translate(-50%, 80px) scale(0); }
+}
+
+.grid {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  > *:not(.no-grid) {
+    padding: 12px;
+  }
+  .col-1-2 {
+    grid-column: ~"1/3";
+  }
+  .center-text {
+    text-align: center;
+  }
+}
+
+.hidden-small {
+  @media all and (max-width: 740px) {
+    display: none;
+  }
+}
+
+.hidden-large {
+  @media all and (min-width: 741px) {
+    display: none;
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid @color-blue-primary;
+}
+
+.material-icons, .icon-text {
+  vertical-align: middle;
+}
+
+.icon-text {
+  margin-left: 9px;
 }
