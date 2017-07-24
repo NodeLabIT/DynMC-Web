@@ -1,3 +1,4 @@
 node_modules/
 .idea/
-test/
+
+cp/node_modules/

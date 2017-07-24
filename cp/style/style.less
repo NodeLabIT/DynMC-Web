@@ -1,0 +1,142 @@
+@color-light: #FAFCFD;
+@color-dark: #263238;
+
+@color-blue-primary: #7BA5FD;
+
+html, body {
+  background: @color-light;
+  color: @color-dark;
+  margin: 0;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12pt;
+}
+
+a {
+  &:link, &:visited, &:hover {
+    color: @color-blue-primary;
+  }
+  cursor: pointer;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+header {
+  background: @color-dark;
+  color: @color-light;
+  .infobar {
+    font-weight: bold;
+    .left {
+      float: left;
+      padding: 20px 40px;
+    }
+    .right {
+      float: right;
+      padding: 20px 40px;
+    }
+    overflow: auto;
+  }
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  .circle-icon {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    position: absolute;
+    top: ~"calc(59px - 12px - 12px - 3px)";
+    left: ~"calc(50% - 24px - 1px)";
+    background: @color-blue-primary;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid @color-light;
+    i {
+      line-height: 48px;
+      color: @color-light;
+    }
+  }
+}
+
+.dialog-container {
+  &:not(.closed) {
+    &:before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    &.fade {
+      .dialog {
+        animation: dialogFadeOut 0.3s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+  &.closed {
+    display: none;
+  }
+  display: flex;
+
+  .dialog {
+    animation: dialogFadeIn 0.3s;
+    animation-fill-mode: forwards;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    z-index: 1010;
+
+    position: fixed;
+
+    &:not(.small) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 97%;
+      height: 92%;
+    }
+    &.small {
+      top: 110px;
+      left: 50%;
+      transform: translate(10%, -50%);
+
+      width: 500px;
+      max-width: 95%;
+    }
+    background: @color-light;
+
+    .dialog-header {
+      background: @color-dark;
+      color: @color-light;
+      padding: 20px 40px;
+      font-weight: bolder;
+      .description {
+        margin-top: 7px;
+        display: block;
+        font-weight: normal;
+        font-size: 11pt;
+      }
+      .close-dialog {
+        float: right;
+      }
+    }
+    .dialog-body {
+      padding: 40px;
+    }
+    .dialog-footer {
+      padding: 20px 40px;
+    }
+  }
+}
+
+@keyframes dialogFadeIn {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes dialogFadeOut {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(0); }
+}

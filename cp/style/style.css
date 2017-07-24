@@ -1,0 +1,131 @@
+html,
+body {
+  background: #FAFCFD;
+  color: #263238;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12pt;
+}
+a {
+  cursor: pointer;
+}
+a:link,
+a:visited,
+a:hover {
+  color: #7BA5FD;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+header {
+  background: #263238;
+  color: #FAFCFD;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+header .infobar {
+  font-weight: bold;
+  overflow: auto;
+}
+header .infobar .left {
+  float: left;
+  padding: 20px 40px;
+}
+header .infobar .right {
+  float: right;
+  padding: 20px 40px;
+}
+header .circle-icon {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  position: absolute;
+  top: calc(59px - 12px - 12px - 3px);
+  left: calc(50% - 24px - 1px);
+  background: #7BA5FD;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #FAFCFD;
+}
+header .circle-icon i {
+  line-height: 48px;
+  color: #FAFCFD;
+}
+.dialog-container {
+  display: flex;
+}
+.dialog-container:not(.closed):before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.4);
+}
+.dialog-container:not(.closed).fade .dialog {
+  animation: dialogFadeOut 0.3s;
+  animation-fill-mode: forwards;
+}
+.dialog-container.closed {
+  display: none;
+}
+.dialog-container .dialog {
+  animation: dialogFadeIn 0.3s;
+  animation-fill-mode: forwards;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  z-index: 1010;
+  position: fixed;
+  background: #FAFCFD;
+}
+.dialog-container .dialog:not(.small) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 97%;
+  height: 92%;
+}
+.dialog-container .dialog.small {
+  top: 110px;
+  left: 50%;
+  transform: translate(10%, -50%);
+  width: 500px;
+  max-width: 95%;
+}
+.dialog-container .dialog .dialog-header {
+  background: #263238;
+  color: #FAFCFD;
+  padding: 20px 40px;
+  font-weight: bolder;
+}
+.dialog-container .dialog .dialog-header .description {
+  margin-top: 7px;
+  display: block;
+  font-weight: normal;
+  font-size: 11pt;
+}
+.dialog-container .dialog .dialog-header .close-dialog {
+  float: right;
+}
+.dialog-container .dialog .dialog-body {
+  padding: 40px;
+}
+.dialog-container .dialog .dialog-footer {
+  padding: 20px 40px;
+}
+@keyframes dialogFadeIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes dialogFadeOut {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}

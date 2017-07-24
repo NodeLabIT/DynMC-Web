@@ -1,7 +1,6 @@
 {
   "debug": true,
   "web": {
-    "localhostOnly": true,
     "port": 8080
   },
   "master": {
