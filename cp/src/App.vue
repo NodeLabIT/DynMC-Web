@@ -70,15 +70,10 @@ export default {
         },
         closeDialog(dialogId) {
             $(dialogId).addClass("fade");
-            setTimeout(function () {
+            $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
                 $(dialogId).addClass('closed');
                 $(dialogId).removeClass('fade');
-            }, 300);
-        }
-    },
-    filters: {
-        translate(value) {
-            return language[value] === undefined ? value + " (untranslated)" : language[value];
+            });
         }
     }
 }

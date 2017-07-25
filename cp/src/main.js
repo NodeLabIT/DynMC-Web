@@ -32,6 +32,10 @@ $.ajax({
 });
 
 function init() {
+    Vue.filter('translate', (value) => {
+        return language[value] === undefined ? value + " (untranslated)" : language[value];
+    });
+
     new Vue({
         el: '#dmccp',
         router,
