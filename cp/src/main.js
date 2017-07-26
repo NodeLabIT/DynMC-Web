@@ -36,6 +36,8 @@ function init() {
         return language[value] === undefined ? value + " (untranslated)" : language[value];
     });
 
+    const socket = io();
+
     new Vue({
         el: '#dmccp',
         router,
@@ -59,5 +61,4 @@ function init() {
             }
         }
     });
-    var socket = io();
 }

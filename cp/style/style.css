@@ -24,15 +24,18 @@ header {
 }
 header .infobar {
   font-weight: bold;
+  max-width: 1600px;
+  width: 80%;
+  margin: 0 auto;
   overflow: auto;
 }
 header .infobar .left {
   float: left;
-  padding: 20px 40px;
+  padding: 20px 0;
 }
 header .infobar .right {
   float: right;
-  padding: 20px 40px;
+  padding: 20px 0;
 }
 header .circle-icon {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -45,6 +48,11 @@ header .circle-icon {
   text-align: center;
   border-radius: 50%;
   border: 2px solid #FAFCFD;
+}
+@media all and (max-width: 940px) {
+  header .circle-icon.navtog {
+    left: 80%;
+  }
 }
 header .circle-icon i {
   line-height: 48px;
@@ -152,12 +160,12 @@ header .circle-icon i {
 .grid .center-text {
   text-align: center;
 }
-@media all and (max-width: 740px) {
+@media all and (max-width: 940px) {
   .hidden-small {
     display: none;
   }
 }
-@media all and (min-width: 741px) {
+@media all and (min-width: 941px) {
   .hidden-large {
     display: none;
   }
@@ -172,4 +180,18 @@ hr {
 }
 .icon-text {
   margin-left: 9px;
+}
+.content-container {
+  margin: 50px auto 20px auto;
+}
+@media all and (max-width: 940px) {
+  .content-container {
+    width: 94%;
+  }
+}
+@media all and (min-width: 941px) {
+  .content-container {
+    width: 80%;
+    max-width: 1600px;
+  }
 }

@@ -5,7 +5,7 @@
                 <span class="left uppercase">{{ 'control-panel' | translate }}</span>
                 <span class="right uppercase hidden-small">{{ user.username }}</span>
             </div>
-            <a class="circle-icon open-dialog" @click="openDialog('#navigation');">
+            <a class="circle-icon open-dialog navtog" @click="openDialog('#navigation');">
                 <i class="material-icons">apps</i>
             </a>
         </header>
@@ -43,7 +43,7 @@
                     </div>
                     <hr>
                     <div class="grid">
-                        <a class="col-1-2 center-text">
+                        <a class="col-1-2 center-text router-link-active">
                             <i class="material-icons">exit_to_app</i><span class="icon-text">{{ 'logout' | translate }} ({{ 'logged-in-as' | translate }} <b>{{ user.username }}</b>)</span>
                         </a>
                     </div>
@@ -58,7 +58,6 @@
 export default {
     data() {
         return {
-            title: 'DynMC Control Panel',
             user: {
                 username: 'ilou'
             }
