@@ -1,13 +1,27 @@
 {
   "control-panel": "DynMC Control Panel",
+
   "navigation": "Navigation",
   "dashboard": "Dashboard",
-  "server-nodes": "Server-Nodes",
-  "server-plugins": "Server-Plugins",
-  "server-worlds": "Server-Welten",
-  "server-types": "Server-Typen",
+  "server-nodes": "Nodes",
+  "server-plugins": "Plugins",
+  "server-worlds": "Welten",
+  "server-types": "Typen",
   "settings": "Einstellungen",
+
   "logout": "Abmelden",
   "login": "Anmelden",
-  "logged-in-as": "Angemeldet als"
+  "login-required": "Anmeldung erforderlich!",
+  "login-description": "Du musst angemeldet sein, um das DynMC verwalten zu können.",
+  "logged-in-as": "Angemeldet als",
+  "twofa": "2-Faktor-Authentifizierung",
+  "twofa-description": "Gib deinen 2-Faktor-Code zur Vervollständigung des Logins ein",
+  "auth": "Authentifizieren",
+
+  "username": "Benutzername",
+  "password": "Passwort",
+
+  "no-connection": "Keine verbindung",
+  "err": "Es ist ein Fehler aufgetreten",
+  "trying-reconnect": "Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen."
 }

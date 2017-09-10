@@ -22,23 +22,26 @@
                 </div>
                 <div class="dialog-body">
                     <div class="grid">
-                        <router-link to="/dashboard">
+                        <router-link to="/dashboard" @click.native="closeDialog('#navigation');">
                             <i class="material-icons">dashboard</i><span class="icon-text">{{ 'dashboard' | translate }}</span>
                         </router-link>
-                        <router-link to="/server-nodes">
+                        <router-link to="/settings" @click.native="closeDialog('#navigation');">
+                            <i class="material-icons">settings</i><span class="icon-text">{{ 'settings' | translate }}</span>
+                        </router-link>
+                    </div>
+                    <hr>
+                    <div class="grid">
+                        <router-link to="/server-nodes" @click.native="closeDialog('#navigation');">
                             <i class="material-icons">share</i><span class="icon-text">{{ 'server-nodes' | translate }}</span>
                         </router-link>
-                        <router-link to="/server-plugins">
+                        <router-link to="/server-plugins" @click.native="closeDialog('#navigation');">
                             <i class="material-icons">build</i><span class="icon-text">{{ 'server-plugins' | translate }}</span>
                         </router-link>
-                        <router-link to="/server-worlds">
+                        <router-link to="/server-worlds" @click.native="closeDialog('#navigation');">
                             <i class="material-icons">language</i><span class="icon-text">{{ 'server-worlds' | translate }}</span>
                         </router-link>
-                        <router-link to="/server-types">
+                        <router-link to="/server-types" @click.native="closeDialog('#navigation');">
                             <i class="material-icons">storage</i><span class="icon-text">{{ 'server-types' | translate }}</span>
-                        </router-link>
-                        <router-link to="/settings">
-                            <i class="material-icons">settings</i><span class="icon-text">{{ 'settings' | translate }}</span>
                         </router-link>
                     </div>
                     <hr>
@@ -50,30 +53,51 @@
                 </div>
             </div>
         </div>
+        <div class="dialog-container closed" id="sio-no-connection">
+            <div class="dialog small navigation">
+                <div class="dialog-header">
+                    <span class="uppercase">{{ 'no-connection' | translate }}</span>
+                </div>
+                <div class="dialog-body">
+                    {{ 'trying-reconnect' | translate }}
+                    <div class="center-text" style="margin-top: 14px;">
+                        <i class="material-icons spin large">refresh</i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-
-export default {
-    data() {
-        return {
-            user: {
-                username: 'ilou'
+    import { sio } from './main';
+    export default {
+        data() {
+            return {
+                user: {
+                    username: 'ilou'
+                }
             }
-        }
-    },
-    methods: {
-        openDialog(dialogId) {
-            $(dialogId).removeClass('closed');
         },
-        closeDialog(dialogId) {
-            $(dialogId).addClass("fade");
-            $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
-                $(dialogId).addClass('closed');
-                $(dialogId).removeClass('fade');
+        methods: {
+            openDialog(dialogId) {
+                $(dialogId).removeClass('closed');
+            },
+            closeDialog(dialogId) {
+                $(dialogId).addClass("fade");
+                $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
+                    $(dialogId).addClass('closed');
+                    $(dialogId).removeClass('fade');
+                });
+            },
+        },
+        created() {
+            sio().on('disconnect', (reason) => {
+                this.openDialog('#sio-no-connection');
+                sio().on('reconnect', (attemptNumber) => {
+                    this.closeDialog('#sio-no-connection');
+                });
             });
         }
     }
-}
 </script>

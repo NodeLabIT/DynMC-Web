@@ -6,6 +6,7 @@ import App from './App.vue'
 
 import Login from './components/Login.vue';
 import Dashboard from './components/Dashboard.vue';
+import NotFound from './components/NotFound.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueCookies);
@@ -13,7 +14,7 @@ Vue.use(VueCookies);
 const routes = [
     { path: '/login', component: Login },
     { path: '/dashboard', component: Dashboard },
-    { path: '*', component: Dashboard }
+    { path: '*', component: NotFound }
 ];
 
 const router = new VueRouter({
@@ -21,41 +22,53 @@ const router = new VueRouter({
     mode: 'history'
 });
 
-global.language = {};
+let language = {};
 $.ajax({
     dataType: "json",
     url: "/language/de_DE.json",
     success: function(data) {
-        global.language = data;
+        language = data;
         init();
     }
 });
+
+const socket = io('http://localhost:8080');
+export function sio() {
+    return socket;
+}
+
+export default { sio };
 
 function init() {
     Vue.filter('translate', (value) => {
         return language[value] === undefined ? value + " (untranslated)" : language[value];
     });
 
-    const socket = io();
-
     new Vue({
         el: '#dmccp',
         router,
         render: h => h(App),
         data: {
-            loggedIn: true,
+            loggedIn: false
+        },
+        methods: {
+            isValid: function(input) {
+                return input !== undefined && input !== "";
+            }
         },
         created() {
+            this.$router.push('/login');
             if(this.$cookies.isKey('cpSession') && this.$cookies.isKey('cpToken')) {
-                socket.emit('auto-auth', {cpSession: this.$cookies.get('cpSession'), cpToken: this.$cookies.get('cpToken')});
-                socket.on('auto-auth', (data) => {
-                    if(data.setup)
+                this.sio().emit('auto-auth', {cpSession: this.$cookies.get('cpSession'), cpToken: this.$cookies.get('cpToken')});
+                this.sio().on('auto-auth', (data) => {
+                    if(data.setup) {
                         this.$router.push('/setup');
-                    else {
-                        if(data.login)
+                        this.loggedIn = true;
+                    } else {
+                        if(data.login) {
                             this.$router.push('/dashboard');
-                        else
-                            this.$router.push('/login');
+                            this.loggedIn = true;
+                        }
                     }
                 });
             }

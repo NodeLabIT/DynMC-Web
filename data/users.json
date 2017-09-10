@@ -1,1 +1,7 @@
-{}
+{
+  "ilou": {
+    "username": "ilou",
+    "password": "foobar",
+    "twofa": "abcdef"
+  }
+}
