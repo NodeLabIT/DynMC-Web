@@ -23,5 +23,8 @@
 
   "no-connection": "Keine verbindung",
   "err": "Es ist ein Fehler aufgetreten",
-  "trying-reconnect": "Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen."
+  "trying-reconnect": "Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen.",
+
+  "username-password-not-defined": "Du musst einen Nutzernamen und ein Passwort angeben!",
+  "username-password-incorrect": "Dieser Nutzer existiert nicht oder das Passwort ist falsch!"
 }

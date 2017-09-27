@@ -3,6 +3,11 @@
 
 @color-blue-primary: #7BA5FD;
 
+@color-blue: #2196f3;
+@color-green: #8bc34a;
+@color-orange: #ffc107;
+@color-red: #f44336;
+
 html, body {
   background: @color-light;
   color: @color-dark;
@@ -320,6 +325,34 @@ hr {
         }
       }
     }
+  }
+}
+
+.message {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 14px;
+  margin: 16px auto 0;
+  color: @color-light;
+  &.info {
+    background: @color-blue;
+    box-shadow: 0 12px 20px -10px fade(@color-blue, 28%), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px fade(@color-blue, 20%);
+  }
+  &.success {
+    background: @color-green;
+    box-shadow: 0 12px 20px -10px fade(@color-green, 28%), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px fade(@color-green, 20%);
+  }
+  &.warn {
+    background: @color-orange;
+    box-shadow: 0 12px 20px -10px fade(@color-orange, 28%), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px fade(@color-orange, 20%);
+  }
+  &.error {
+    background: @color-red;
+    box-shadow: 0 12px 20px -10px fade(@color-red, 28%), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px fade(@color-red, 20%);
+  }
+  &.hidden-default {
+    display: none;
   }
 }
 

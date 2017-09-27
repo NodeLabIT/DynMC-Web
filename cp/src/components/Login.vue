@@ -5,6 +5,7 @@
                 <span>{{ 'login-required' | translate }}</span>
                 <p>{{ 'login-description' | translate }}</p>
             </div>
+            <div class="message error hidden-default" id="error"></div>
             <div class="input-group">
                 <input id="username" type="text" v-model="username" v-bind:class="{ valid: $root.isValid(username) }" />
                 <label for="username">{{ 'username' | translate }}</label>
@@ -45,27 +46,39 @@
                 username: "",
                 password: "",
                 twofaCode: [],
-                step: 0
+                step: 0,
+
             }
         },
         methods: {
             login() {
-                console.log(this.username);
                 sio().emit('login', {username: this.username, password: this.password});
-                sio().on('login', (data) => {
-                    // TODO check status, set cookies, errormessages, update root-scope login-variable, redirect
-
-                    this.step = 1;
-                });
             },
             twofa() {
                 if(this.step === 1) {
                     sio().emit('login-twofa', {twofaCode: this.twofaCode});
-                    sio().on('login-twofa', (data) => {
-
-                    });
                 }
             }
+        },
+        created: function () {
+            sio().on('login', (data) => {
+                // TODO check status, set cookies, update root-scope login-variable, redirect
+                if(data.err) {
+                    switch(data.err) {
+                        case "username-password-not-defined":
+                            $('#error').text(this.$options.filters.translate('username-password-not-defined')).show();
+                            break;
+                        case "username-password-incorrect":
+                            $('#error').text(this.$options.filters.translate('username-password-incorrect')).show();
+                            break;
+                    }
+                } else {
+                    this.step = 1;
+                }
+            });
+            sio().on('login-twofa', (data) => {
+
+            });
         }
     }
 </script>

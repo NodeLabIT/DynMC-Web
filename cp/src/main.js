@@ -37,8 +37,6 @@ export function sio() {
     return socket;
 }
 
-export default { sio };
-
 function init() {
     Vue.filter('translate', (value) => {
         return language[value] === undefined ? value + " (untranslated)" : language[value];
@@ -59,8 +57,8 @@ function init() {
         created() {
             this.$router.push('/login');
             if(this.$cookies.isKey('cpSession') && this.$cookies.isKey('cpToken')) {
-                this.sio().emit('auto-auth', {cpSession: this.$cookies.get('cpSession'), cpToken: this.$cookies.get('cpToken')});
-                this.sio().on('auto-auth', (data) => {
+                this.sio().emit('auto-login', {cpSession: this.$cookies.get('cpSession'), cpToken: this.$cookies.get('cpToken')});
+                this.sio().on('auto-login', (data) => {
                     if(data.setup) {
                         this.$router.push('/setup');
                         this.loggedIn = true;
